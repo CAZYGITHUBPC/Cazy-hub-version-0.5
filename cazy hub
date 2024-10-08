@@ -69,7 +69,7 @@ Fluent:Notify({
 
 SaveManager:LoadAutoloadConfig()
 
-    Tabs.Main:AddButton({
+    Tabs.misc:AddButton({
         Title = "ESP",
         Description = "Toggles ESP",
         Callback = function()
