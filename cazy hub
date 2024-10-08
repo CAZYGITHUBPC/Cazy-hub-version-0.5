@@ -1,0 +1,96 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "🔵Cazy🟣Hub🔴",
+    SubTitle = "by Mycroman & Cazy version 0.5",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+-- Existing Fluent UI Setup Code
+Fluent:Notify({
+    Title = "You Executed cazyhub:)",
+    Content = "Yipee",
+    SubContent = "Have Fun",
+    Duration = 5
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    todo = Window:AddTab({ Title = "Jump & Speed", Icon = "" }),
+    Stun = Window:AddTab({ Title = "Stun", Icon = "" }),
+    Anti = Window:AddTab({ Title = "Discord Server", Icon = "" }), -- Added missing comma
+    Move = Window:AddTab({ Title = "Other Discord Servers", Icon = "" }),
+    Bind = Window:AddTab({ Title = "Other Custom Movesets", Icon = "" }),
+    misc = Window:AddTab({ Title = "Miscellaneous", Icon = "" }),
+    anim = Window:AddTab({ Title = "Animations", Icon = "" }),
+    tool = Window:AddTab({ Title = "KJ Animation (DUELS)", Icon = "" }),
+    CustomMovesets = Window:AddTab({ Title = "Custom Movesets", Icon = "" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+
+local Button = Tabs.misc:AddButton({
+    Title = "Inf yield",
+    Description = "Loads Infinite Yield script",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+})
+
+-- Assume Input is defined earlier in your script
+Input:OnChanged(function()
+    print("Input updated:", Input.Value)
+end)
+
+-- Initialize SaveManager and InterfaceManager
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+SaveManager:LoadAutoloadConfig()
+
+    Tabs.Main:AddButton({
+        Title = "ESP",
+        Description = "Toggles ESP",
+        Callback = function()
+			loadstring(game:HttpGet('https://pastebin.com/iW6vjpPe'))()
+            Window:Dialog({
+                Title = "Title",
+                Content = "This is a dialog",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
